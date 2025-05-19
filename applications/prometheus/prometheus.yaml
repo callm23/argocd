@@ -19,3 +19,6 @@ spec:
   serviceAccountName: prometheus
   version: v2.22.1
   serviceMonitorSelector: {}
+  scrapeConfigSelector:
+    matchLabels:
+      prometheus: system-monitoring-prometheus
