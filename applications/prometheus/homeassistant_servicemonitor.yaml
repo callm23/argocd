@@ -10,4 +10,4 @@ spec:
     - labels:
         job: prometheus
       targets:
-        - http://192.168.1.235:8123/api/prometheus
+        - 192.168.1.235:8123
