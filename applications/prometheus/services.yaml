@@ -9,6 +9,8 @@ spec:
   - name: web
     port: 9090
     targetPort: web
+    nodePort: 39090
   selector:
     app.kubernetes.io/name: prometheus
   sessionAffinity: ClientIP
+  type: NodePort
