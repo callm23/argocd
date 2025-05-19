@@ -6,6 +6,9 @@ metadata:
   labels:
     app: prometheus
 spec:
+  scrapeConfigSelector:
+    matchLabels:
+      app: prometheus
   staticConfigs:
     - labels:
         job: prometheus
