@@ -11,3 +11,4 @@ spec:
         job: prometheus
       targets:
         - 192.168.1.235:8123
+  metricsPath: /api/prometheus
