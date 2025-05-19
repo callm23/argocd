@@ -11,3 +11,6 @@ spec:
         job: prometheus
       targets:
         - 192.168.1.235:8123/api/prometheus
+  httpSDConfigs:
+    - url: http://192.168.1.235:8123/api/prometheus
+      refreshInterval: 15s
