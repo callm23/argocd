@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: homeassistant-service-monitor
+  labels:
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+    - port: metrics
+      path: http://192.168.1.235:8123/api/prometheus
+      interval: 15s
+      scrapeTimeout: 10s
