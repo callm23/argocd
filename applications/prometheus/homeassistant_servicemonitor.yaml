@@ -4,7 +4,7 @@ metadata:
   name: homeassistant-config
   namespace: monitoring
   labels:
-    prometheus: system-monitoring-prometheus
+    app: prometheus
 spec:
   staticConfigs:
     - labels:
