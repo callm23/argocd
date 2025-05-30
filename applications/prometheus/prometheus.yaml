@@ -24,3 +24,12 @@ spec:
   scrapeConfigSelector:
     matchLabels:
       prometheus: system-monitoring-prometheus
+  storage:
+    volumeClaimTemplate:
+      spec:
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: my-prometheus
+        resources:
+          requests:
+            storage: 50Gi
