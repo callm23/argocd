@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: my-prometheus
 spec:
   capacity:
-    storage: 50Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteOnce
   nfs:
