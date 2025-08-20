@@ -173,11 +173,12 @@ spec:
       kind: PersistentVolumeClaim
       metadata:
         name: data
-      
-      
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
             storage: 10Gi
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: my-vault
