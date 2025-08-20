@@ -29,3 +29,29 @@ spec:
     server: 192.168.1.100
     path: /volume2/proxmox/kubernetes/nfs/prometheus-2
   persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-vault
+  labels:
+    app.kubernetes.io/name: my-vault
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/vault
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: synology-nfs
+provisioner: example.com/external-nfs
+parameters:
+  server: 192.168.1.100
+  path: /volume2/proxmox/kubernetes/nfs/vault
+  readOnly: "false"
