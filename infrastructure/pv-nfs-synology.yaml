@@ -38,7 +38,7 @@ metadata:
     app.kubernetes.io/name: my-vault
 spec:
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
   nfs:
