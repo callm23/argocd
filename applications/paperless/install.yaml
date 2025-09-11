@@ -100,7 +100,7 @@ spec:
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           env:
             - name: PAPERLESS_REDIS
-              value: redis://redis:6379
+              value: redis://redis-svc:6379
             - name: PAPERLESS_DBHOST
               value: postgres
             - name: PAPERLESS_DBUSER
@@ -181,9 +181,24 @@ metadata:
   name: paperless-svc
   namespace: paperless
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: paperless
   ports:
     - port: 80
       targetPort: 8000
+---
+# Service for redis
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-svc
+  namespace: paperless
+spec:
+  type: ClusterIP
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
