@@ -156,7 +156,7 @@ metadata:
   namespace: paperless
 spec:
   accessModes: ["ReadWriteOnce"]
-  volumeName: nfs-pv-synology-paperless-data
+  volumeName: nfs-pv-synology-paperless-media
   resources:
     requests:
       storage: 5Gi
@@ -168,7 +168,7 @@ metadata:
   namespace: paperless
 spec:
   accessModes: ["ReadWriteOnce"]
-  volumeName: nfs-pv-synology-paperless-data
+  volumeName: nfs-pv-synology-paperless-consume
   resources:
     requests:
       storage: 1Gi
