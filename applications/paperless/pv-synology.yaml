@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: my-paperless
 spec:
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   nfs:
@@ -22,7 +22,7 @@ metadata:
     app.kubernetes.io/name: my-paperless
 spec:
   capacity:
-    storage: 1Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   nfs:
