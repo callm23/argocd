@@ -1,6 +1,6 @@
 # Paperless
 
-Container runs as uid=1000 and gid=1000
+Container runs as uid=1000 and gid=1000, update the storage permissions accordingly.
 
 ```bash
 # change owner to UID=1000/GID=1000
