@@ -108,7 +108,7 @@ spec:
             - name: PAPERLESS_REDIS
               value: redis://redis-svc:6379
             - name: PAPERLESS_DBHOST
-              value: postgres
+              value: postgres-svc
             - name: PAPERLESS_DBUSER
               value: paperless
             - name: PAPERLESS_DBPASS
