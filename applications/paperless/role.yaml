@@ -1,0 +1,25 @@
+---
+# Source: paperless/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: paperless
+  labels:
+    helm.sh/chart: paperless-5.2.0
+    app.kubernetes.io/name: paperless
+    app.kubernetes.io/instance: paperless
+    app.kubernetes.io/version: "2.17.1"
+    app.kubernetes.io/managed-by: Helm
+rules:
+  - apiGroups: ['']
+    verbs: ['list']
+    resources:
+      - pods
+  - apiGroups: ['apps']
+    verbs: ['get']
+    resources:
+      - deployments
+  - apiGroups: ['']
+    verbs: ['create']
+    resources:
+      - pods/exec

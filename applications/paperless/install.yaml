@@ -95,6 +95,7 @@ spec:
       labels:
         app: paperless
     spec:
+      serviceAccountName: default
       containers:
         - name: paperless
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
