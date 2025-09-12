@@ -95,10 +95,15 @@ spec:
       labels:
         app: paperless
     spec:
+      securityContext:
+        fsGroup: 1000  # <-- matches paperless GID
       serviceAccountName: default
       containers:
         - name: paperless
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
           env:
             - name: PAPERLESS_REDIS
               value: redis://redis-svc:6379
