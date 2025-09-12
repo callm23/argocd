@@ -1,0 +1,92 @@
+---
+# Paperless-ngx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      securityContext:
+        fsGroup: 1000  # <-- matches paperless GID
+      serviceAccountName: default
+      containers:
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:latest
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          env:
+            - name: PAPERLESS_REDIS
+              value: redis://redis-svc:6379
+            - name: PAPERLESS_DBHOST
+              value: postgres-svc
+            - name: PAPERLESS_DBUSER
+              value: paperless
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-db-secret
+                  key: POSTGRES_PASSWORD
+            - name: PAPERLESS_DBNAME
+              value: paperless
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-db-secret
+                  key: PAPERLESS_SECRET_KEY
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /usr/src/paperless/data
+              name: data
+            - mountPath: /usr/src/paperless/media
+              name: media
+            - mountPath: /usr/src/paperless/consume
+              name: consume
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-data
+        - name: media
+          persistentVolumeClaim:
+            claimName: paperless-media
+        - name: consume
+          persistentVolumeClaim:
+            claimName: paperless-consume
+---
+# Service für Paperless
+apiVersion: v1
+kind: Service
+metadata:
+  name: paperless-svc
+  namespace: paperless
+spec:
+  type: NodePort
+  selector:
+    app: paperless
+  ports:
+    - port: 80
+      targetPort: 8000

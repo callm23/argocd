@@ -1,0 +1,165 @@
+---
+# Postgres
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          env:
+            - name: POSTGRES_USER
+              value: paperless
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-db-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              value: paperless
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+# Service for postgres
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-svc
+  namespace: paperless
+spec:
+  type: NodePort
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: paperless
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-postgres
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-data
+  namespace: paperless
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-data
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-media
+  namespace: paperless
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-media
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-consume
+  namespace: paperless
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-consume
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-synology-paperless-postgres
+  labels:
+    app.kubernetes.io/name: my-paperless
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/paperless/postgres
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-synology-paperless-data
+  labels:
+    app.kubernetes.io/name: my-paperless
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/paperless/data
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-synology-paperless-media
+  labels:
+    app.kubernetes.io/name: my-paperless
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/paperless/media
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-synology-paperless-consume
+  labels:
+    app.kubernetes.io/name: my-paperless
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/paperless/consume
+  persistentVolumeReclaimPolicy: Retain
