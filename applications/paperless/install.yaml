@@ -51,6 +51,7 @@ metadata:
   namespace: paperless
 spec:
   accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-postgres
   resources:
     requests:
       storage: 1Gi
@@ -221,4 +222,3 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
-      
