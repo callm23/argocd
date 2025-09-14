@@ -6,15 +6,16 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/callm23/argocd.git   # dein Git Repo
-    targetRevision: main                                # Branch oder Tag
-    path: applications/grafana                                 # Ordner im Repo
-    directory:
-      recurse: true  # Enable recursive search for manifests in sub-folders
+    repoURL: https://grafana.github.io/helm-charts  # Helm chart repository
+    targetRevision: 6.58.2                         # Chart version (update as needed)
+    chart: grafana                                  # Chart name
+    helm:
+      valueFiles:
+        - applications/grafana/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
   syncPolicy:
     automated:
-      prune: true       # löscht nicht mehr vorhandene Objekte
-      selfHeal: true    # korrigiert manuelle Änderungen
+      prune: true       # Deletes resources no longer defined in the chart
+      selfHeal: true    # Corrects manual changes to resources
