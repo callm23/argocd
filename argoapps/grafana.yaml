@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/callm23/argocd.git   # dein Git Repo
     targetRevision: main                                # Branch oder Tag
     path: applications/grafana                                 # Ordner im Repo
+    directory:
+      recurse: true  # Enable recursive search for manifests in sub-folders
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
