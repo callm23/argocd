@@ -1,0 +1,47 @@
+---
+# Source: k8s-monitoring/charts/alloy-operator/templates/rbac/alloy-manager.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: grafana-k8s-monitoring-alloy-operator-alloy-manager
+  labels:
+    helm.sh/chart: alloy-operator-0.3.9
+    app.kubernetes.io/name: alloy-operator
+    app.kubernetes.io/instance: grafana-k8s-monitoring
+    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/managed-by: Helm
+rules:
+  - apiGroups:
+      - collectors.grafana.com
+    resources:
+      - alloys
+      - alloys/status
+      - alloys/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+---
+# Source: k8s-monitoring/charts/alloy-operator/templates/rbac/alloy-manager.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: grafana-k8s-monitoring-alloy-operator-alloy-manager
+  labels:
+    helm.sh/chart: alloy-operator-0.3.9
+    app.kubernetes.io/name: alloy-operator
+    app.kubernetes.io/instance: grafana-k8s-monitoring
+    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/managed-by: Helm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: grafana-k8s-monitoring-alloy-operator-alloy-manager
+subjects:
+  - kind: ServiceAccount
+    name: grafana-k8s-monitoring-alloy-operator
+    namespace: default

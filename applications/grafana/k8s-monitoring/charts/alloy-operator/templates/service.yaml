@@ -1,0 +1,27 @@
+---
+# Source: k8s-monitoring/charts/alloy-operator/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-k8s-monitoring-alloy-operator
+  namespace: default
+  labels:
+    helm.sh/chart: alloy-operator-0.3.9
+    app.kubernetes.io/name: alloy-operator
+    app.kubernetes.io/instance: grafana-k8s-monitoring
+    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8081
+      targetPort: http
+      protocol: TCP
+    - name: metrics
+      port: 8082
+      targetPort: metrics
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: alloy-operator
+    app.kubernetes.io/instance: grafana-k8s-monitoring

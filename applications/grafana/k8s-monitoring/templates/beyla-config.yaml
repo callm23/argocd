@@ -1,0 +1,47 @@
+---
+# Source: k8s-monitoring/templates/beyla-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-k8s-monitoring-beyla
+  namespace: default
+  labels:
+    helm.sh/chart: beyla-1.9.4
+    app.kubernetes.io/name: beyla
+    app.kubernetes.io/instance: grafana-k8s-monitoring
+    app.kubernetes.io/version: "2.6.3"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: beyla
+    app.kubernetes.io/component: config
+data:
+  beyla-config.yml: |-
+    attributes:
+      kubernetes:
+        cluster_name: my-cluster
+        enable: true
+    discovery:
+      exclude_services:
+      - exe_path: .*alloy.*|.*otelcol.*|.*beyla.*
+      services:
+      - k8s_namespace: .
+    filter:
+      network:
+        k8s_dst_owner_name:
+          not_match: '{kube*,*jaeger-agent*,*prometheus*,*promtail*,*grafana-agent*}'
+        k8s_src_owner_name:
+          not_match: '{kube*,*jaeger-agent*,*prometheus*,*promtail*,*grafana-agent*}'
+    internal_metrics:
+      prometheus:
+        path: /internal/metrics
+        port: 9090
+    otel_traces_export:
+      endpoint: http://grafana-k8s-monitoring-alloy-receiver.default.svc.cluster.local:4317
+    prometheus_export:
+      features:
+      - application
+      - network
+      - application_service_graph
+      - application_span
+      - application_host
+      path: /metrics
+      port: 9090
