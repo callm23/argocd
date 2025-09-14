@@ -1,34 +1,22 @@
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: grafana-secrets
+  name: grafana-cloud-auth
   namespace: grafana
 spec:
   refreshInterval: "1h"
   secretStoreRef:
     name: vault-backend
-    kind: SecretStore
+    kind: ClusterSecretStore
   target:
-    name: grafana-secrets
+    name: grafana-cloud-auth
     creationPolicy: Owner
   data:
-    - secretKey: grafana-cloud-metrics-password
+    - secretKey: auth.username
       remoteRef:
-        key: secret/data/grafana
-        property: grafana-cloud-metrics-password
-    - secretKey: grafana-cloud-logs-password
+        key: secret/data/grafana-cloud
+        property: auth.username
+    - secretKey: auth.password
       remoteRef:
-        key: secret/data/grafana
-        property: grafana-cloud-logs-password
-    - secretKey: gc-otlp-endpoint-password
-      remoteRef:
-        key: secret/data/grafana
-        property: gc-otlp-endpoint-password
-    - secretKey: grafana-cloud-profiles-password
-      remoteRef:
-        key: secret/data/grafana
-        property: grafana-cloud-profiles-password
-    - secretKey: api-key
-      remoteRef:
-        key: secret/data/cloud-provider
-        property: api-key
+        key: secret/data/grafana-cloud
+        property: auth.password
