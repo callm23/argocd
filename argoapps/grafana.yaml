@@ -38,19 +38,19 @@ spec:
                 external:
                   url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom
           kepler:
-            enabled: true
+            enabled: false
         annotationAutodiscovery:
-          enabled: true
+          enabled: false
         prometheusOperatorObjects:
-          enabled: true
+          enabled: false
         clusterEvents:
-          enabled: true
+          enabled: false
         nodeLogs:
-          enabled: true
+          enabled: false
         podLogs:
-          enabled: true
+          enabled: false
         applicationObservability:
-          enabled: true
+          enabled: false
           receivers:
             otlp:
               grpc:
@@ -63,9 +63,9 @@ spec:
               enabled: true
               port: 9411
         autoInstrumentation:
-          enabled: true
+          enabled: false
         profiling:
-          enabled: true
+          enabled: false
         alloy-metrics:
           enabled: false
           remoteConfig:
