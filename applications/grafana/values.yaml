@@ -1,5 +1,5 @@
 cluster:
-  name: my-cluster
+  name: as03
 destinations:
   - name: grafana-cloud-metrics
     type: prometheus
