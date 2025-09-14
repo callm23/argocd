@@ -50,7 +50,7 @@ spec:
             protocol: http
             auth:
               type: basic
-                  username: 
+              username: 
                 valueFrom:
                   secretKeyRef:
                     name: grafana-cloud-auth
