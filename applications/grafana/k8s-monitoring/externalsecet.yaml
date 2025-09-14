@@ -28,3 +28,7 @@ spec:
       remoteRef:
         key: secret/data/grafana
         property: grafana-cloud-profiles-password
+    - secretKey: api-key
+      remoteRef:
+        key: secret/data/cloud-provider
+        property: api-key
