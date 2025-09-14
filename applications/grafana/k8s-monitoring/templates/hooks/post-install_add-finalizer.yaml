@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: grafana-k8s-monitoring-add-finalizer
-  namespace: default
+  namespace: grafana
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
@@ -15,7 +15,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: grafana-k8s-monitoring-add-finalizer
-  namespace: default
+  namespace: grafana
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
@@ -30,7 +30,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: grafana-k8s-monitoring-add-finalizer
-  namespace: default
+  namespace: grafana
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
@@ -38,7 +38,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: grafana-k8s-monitoring-add-finalizer
-    namespace: default
+    namespace: grafana
 roleRef:
   kind: Role
   name: grafana-k8s-monitoring-add-finalizer
@@ -49,7 +49,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: grafana-k8s-monitoring-add-finalizer
-  namespace: default
+  namespace: grafana
   labels:
     app.kubernetes.io/name: grafana-k8s-monitoring-add-finalizer
     app.kubernetes.io/instance: grafana-k8s-monitoring

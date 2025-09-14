@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: grafana-k8s-monitoring-kepler
-  namespace: default
+  namespace: grafana
   labels:
     helm.sh/chart: kepler-0.6.1
     app.kubernetes.io/name: kepler

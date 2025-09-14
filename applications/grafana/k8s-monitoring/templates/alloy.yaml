@@ -4,7 +4,7 @@ apiVersion: collectors.grafana.com/v1alpha1
 kind: Alloy
 metadata:
   name: grafana-k8s-monitoring-alloy-metrics
-  namespace: default
+  namespace: grafana
   annotations:
     helm.sdk.operatorframework.io/uninstall-wait: "true"
 spec:
@@ -214,7 +214,7 @@ apiVersion: collectors.grafana.com/v1alpha1
 kind: Alloy
 metadata:
   name: grafana-k8s-monitoring-alloy-singleton
-  namespace: default
+  namespace: grafana
   annotations:
     helm.sdk.operatorframework.io/uninstall-wait: "true"
 spec:
@@ -424,7 +424,7 @@ apiVersion: collectors.grafana.com/v1alpha1
 kind: Alloy
 metadata:
   name: grafana-k8s-monitoring-alloy-logs
-  namespace: default
+  namespace: grafana
   annotations:
     helm.sdk.operatorframework.io/uninstall-wait: "true"
 spec:
@@ -640,7 +640,7 @@ apiVersion: collectors.grafana.com/v1alpha1
 kind: Alloy
 metadata:
   name: grafana-k8s-monitoring-alloy-receiver
-  namespace: default
+  namespace: grafana
   annotations:
     helm.sdk.operatorframework.io/uninstall-wait: "true"
 spec:
@@ -866,7 +866,7 @@ apiVersion: collectors.grafana.com/v1alpha1
 kind: Alloy
 metadata:
   name: grafana-k8s-monitoring-alloy-profiles
-  namespace: default
+  namespace: grafana
   annotations:
     helm.sdk.operatorframework.io/uninstall-wait: "true"
 spec:

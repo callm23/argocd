@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: grafana-k8s-monitoring-windows-exporter
-  namespace: default
+  namespace: grafana
   labels:
     helm.sh/chart: windows-exporter-0.12.2
     app.kubernetes.io/managed-by: Helm

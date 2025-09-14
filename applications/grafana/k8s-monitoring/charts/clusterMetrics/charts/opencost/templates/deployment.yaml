@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana-k8s-monitoring-opencost
-  namespace: default
+  namespace: grafana
   labels:
     helm.sh/chart: opencost-2.2.7
     app.kubernetes.io/name: opencost

@@ -28,4 +28,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: grafana-k8s-monitoring-kepler
-    namespace: default
+    namespace: grafana
