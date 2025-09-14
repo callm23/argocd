@@ -67,7 +67,7 @@ spec:
         profiling:
           enabled: true
         alloy-metrics:
-          enabled: fales
+          enabled: false
           remoteConfig:
             enabled: false
         alloy-singleton:
