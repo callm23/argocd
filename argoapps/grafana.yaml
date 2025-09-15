@@ -52,7 +52,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: grafana-cloud-auth
-                    key: auth.password
+                    key: alloy.api.key
               - name: CLUSTER_NAME
                 value: my-cluster
               - name: NAMESPACE
@@ -98,7 +98,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: grafana-cloud-auth
-                    key: auth.password
+                    key: alloy.api.key
               - name: CLUSTER_NAME
                 value: my-cluster
               - name: NAMESPACE

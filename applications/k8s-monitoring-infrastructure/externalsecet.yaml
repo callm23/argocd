@@ -20,3 +20,7 @@ spec:
       remoteRef:
         key: secret/data/grafana-cloud
         property: auth.password
+    - secretKey: alloy.api.key
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: alloy.api.key
