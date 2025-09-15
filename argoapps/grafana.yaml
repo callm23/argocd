@@ -74,8 +74,8 @@ spec:
               namespace: grafana
             auth:
               type: basic
-              usernameFrom: auth.username
-              passwordFrom: auth.password
+              usernameKey: auth.username
+              passwordKey: auth.password
         alloy-singleton:
           enabled: true
           alloy:
