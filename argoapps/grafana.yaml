@@ -45,7 +45,7 @@ spec:
         podLogs:
           enabled: true
         alloy-metrics:
-          enabled: false
+          enabled: true
           alloy:
             extraEnv:
               - name: GCLOUD_RW_API_KEY
@@ -68,7 +68,7 @@ spec:
           remoteConfig:
             enabled: false
         alloy-singleton:
-          enabled: false
+          enabled: true
           alloy:
             extraEnv:
               - name: GCLOUD_RW_API_KEY
@@ -91,7 +91,7 @@ spec:
           remoteConfig:
            enabled: false
         alloy-logs:
-          enabled: false
+          enabled: true
           alloy:
             extraEnv:
               - name: GCLOUD_RW_API_KEY
