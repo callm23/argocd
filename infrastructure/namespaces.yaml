@@ -4,6 +4,11 @@ kind: Namespace
 metadata:
   name: grafana
   labels:
-    - pod-security.kubernetes.io/enforce=privileged
-    - pod-security.kubernetes.io/audit=privileged
-    - pod-security.kubernetes.io/warn=privileged
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: v1.34
+
+    # We are setting these to our _desired_ `enforce` level.
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: v1.34
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: v1.34
