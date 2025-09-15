@@ -66,7 +66,18 @@ spec:
               - name: GCLOUD_FM_COLLECTOR_ID
                 value: grafana-k8s-monitoring-$(CLUSTER_NAME)-$(NAMESPACE)-$(POD_NAME)
           remoteConfig:
-            enabled: false
+            enabled: true
+            url: https://fleet-management-prod-011.grafana.net
+            auth:
+              type: basic
+              usernameFrom:
+                secretKeyRef:
+                  name: grafana-cloud-auth
+                  key: auth.username
+              passwordFrom: 
+                secretKeyRef:
+                  name: grafana-cloud-auth
+                  key: auth.password
         alloy-singleton:
           enabled: true
           alloy:
