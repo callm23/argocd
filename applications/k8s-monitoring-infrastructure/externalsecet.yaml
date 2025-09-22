@@ -12,15 +12,23 @@ spec:
     name: grafana-cloud-auth
     creationPolicy: Owner
   data:
-    - secretKey: auth.username
+    - secretKey: alloy.password 
       remoteRef:
         key: secret/data/grafana-cloud
-        property: auth.username
-    - secretKey: auth.password
+        property: alloy.password 
+    - secretKey: auth.password 
       remoteRef:
         key: secret/data/grafana-cloud
         property: auth.password
-    - secretKey: alloy.api.key
+    - secretKey: logs.username 
       remoteRef:
         key: secret/data/grafana-cloud
-        property: alloy.api.key
+        property: logs.username 
+    - secretKey: metrics.username  
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: metrics.username  
+    - secretKey: otlp.username 
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: otlp.username 
