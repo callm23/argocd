@@ -31,4 +31,11 @@ spec:
     - secretKey: otlp.username 
       remoteRef:
         key: secret/data/grafana-cloud
-        property: otlp.username 
+        property: otlp.username
+    - secretKey: fleet.token 
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: fleet.token
+
+
+        
