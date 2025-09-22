@@ -72,7 +72,7 @@ spec:
             metricsSource: grafana-cloud-metrics
             opencost:
               exporter:
-                defaultClusterId: my-cluster
+                defaultClusterId: as03
               prometheus:
                 existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
                 external:
