@@ -21,7 +21,7 @@ spec:
         cluster:
           name: as03
         destinations:
-          - name: grafana-cloud-metrics
+          - name: alloy-metrics-remote-cfg-grafana-k8s-monitoring
             type: prometheus
             url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom/push
             secret:
@@ -30,8 +30,8 @@ spec:
               namespace: grafana
             auth:
               type: basic
-              username: "2675015"
-              passwordKey: auth.password
+              usernameKey: username
+              passwordKey: password
           - name: grafana-cloud-logs
             type: loki
             url: https://logs-prod-012.grafana.net./loki/api/v1/push
