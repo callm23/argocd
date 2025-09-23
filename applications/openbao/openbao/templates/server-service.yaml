@@ -17,6 +17,7 @@ spec:
   # We want the servers to become available even if they're not ready
   # since this DNS is also used for join operations.
   publishNotReadyAddresses: true
+  type: NodePort
   ports:
     - name: http
       port: 8200
