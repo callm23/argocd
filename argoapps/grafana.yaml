@@ -120,6 +120,7 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
+              embed: true
               name: grafana-cloud-remote-cfg
               namespace: grafana
             auth:
@@ -152,6 +153,7 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
+              embed: true
               name: grafana-cloud-remote-cfg
               namespace: grafana
             auth:
