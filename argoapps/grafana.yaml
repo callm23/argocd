@@ -70,8 +70,8 @@ spec:
               exporter:
                 defaultClusterId: as03
               prometheus:
-                existingSecretName: grafana-cloud-auth
-                password_key: auth.password
+                existingSecretName: alloy-metrics-remote-cfg-grafana-k8s-monitoring
+                password_key: password
                 external:
                   url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom
           kepler:
