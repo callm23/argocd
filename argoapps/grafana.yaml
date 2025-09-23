@@ -120,7 +120,7 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-auth
+              name: grafana-cloud-remote-cfg
               namespace: grafana
             auth:
               type: basic
