@@ -116,6 +116,10 @@ spec:
           remoteConfig:
             enabled: true
             url: https://fleet-management-prod-011.grafana.net
+            secret:
+              create: false
+              name: grafana-cloud-auth
+              namespace: grafana
             auth:
               type: basic
               username: "1375390"
@@ -144,6 +148,10 @@ spec:
           remoteConfig:
             enabled: true
             url: https://fleet-management-prod-011.grafana.net
+            secret:
+              create: false
+              name: grafana-cloud-auth
+              namespace: grafana
             auth:
               type: basic
               username: "1375390"
@@ -177,6 +185,9 @@ spec:
             enabled: true
             url: https://fleet-management-prod-011.grafana.net
             secret:
+              create: false
+              name: grafana-cloud-auth
+              namespace: grafana
             auth:
               type: basic
               username: "1375390"
@@ -222,6 +233,10 @@ spec:
           remoteConfig:
             enabled: true
             url: https://fleet-management-prod-011.grafana.net
+            secret:
+              create: false
+              name: grafana-cloud-auth
+              namespace: grafana
             secret:
               create: false
               name: grafana-cloud-auth
