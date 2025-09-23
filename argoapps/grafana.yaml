@@ -178,12 +178,12 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-auth
+              name: grafana-cloud-loki
               namespace: grafana
             auth:
               type: basic
-              username: "1375390"
-              passwordKey: auth.password
+              usernameKey: username
+              passwordKey: password
         alloy-receiver:
           enabled: true
           alloy:
