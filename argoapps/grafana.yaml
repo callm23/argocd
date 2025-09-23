@@ -71,6 +71,7 @@ spec:
                 defaultClusterId: as03
               prometheus:
                 existingSecretName: grafana-cloud-auth
+                password_key: auth.password
                 external:
                   url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom
           kepler:
