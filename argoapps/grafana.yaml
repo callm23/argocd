@@ -26,7 +26,7 @@ spec:
             url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom/push
             secret:
               create: false
-              name: grafana-cloud-metrics
+              name: grafana-cloud-prom
               namespace: grafana
             auth:
               type: basic
