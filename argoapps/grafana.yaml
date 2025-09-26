@@ -91,7 +91,7 @@ spec:
               - name: GCLOUD_RW_API_KEY
                 valueFrom:
                   secretKeyRef:
-                    name: alloy-metrics-remote-cfg-grafana-k8s-monitoring
+                    name: grafana-cloud-prom
                     key: password
               - name: CLUSTER_NAME
                 value: as03
