@@ -204,8 +204,8 @@ spec:
               - name: GCLOUD_RW_API_KEY
                 valueFrom:
                   secretKeyRef:
-                    name: grafana-cloud-auth
-                    key: alloy.password
+                    name: grafana-cloud-prom
+                    key: password
               - name: CLUSTER_NAME
                 value: my-cluster
               - name: NAMESPACE
