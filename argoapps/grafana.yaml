@@ -155,7 +155,7 @@ spec:
               - name: GCLOUD_RW_API_KEY
                 valueFrom:
                   secretKeyRef:
-                    name: alloy-logs-remote-cfg-grafana-k8s-monitoring
+                    name: grafana-cloud-loki
                     key: password
               - name: CLUSTER_NAME
                 value: as03
