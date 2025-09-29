@@ -139,19 +139,6 @@ spec:
               name: https-internal
             - containerPort: 8202
               name: http-rep
-          readinessProbe:
-            # Check status; unsealed openbao servers return 0
-            # The exit code reflects the seal status:
-            #   0 - unsealed
-            #   1 - error
-            #   2 - sealed
-            exec:
-              command: ["/bin/sh", "-ec", "bao status -tls-skip-verify"]
-            failureThreshold: 2
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 3
           lifecycle:
             # openbao container doesn't receive SIGTERM from Kubernetes
             # and after the grace period ends, Kube sends SIGKILL.  This
