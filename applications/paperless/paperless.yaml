@@ -20,7 +20,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: paperless
-          image: ghcr.io/paperless-ngx/paperless-ngx:latest
+          image: paperlessngx/paperless-ngx:2.18
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
