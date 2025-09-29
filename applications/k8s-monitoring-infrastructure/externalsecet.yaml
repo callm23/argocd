@@ -1,7 +1,7 @@
 apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
-  name: grafana-cloud-loki-bao
+  name: grafana-cloud-ingest-bao
   namespace: grafana
 spec:
   refreshInterval: "1h"
@@ -9,17 +9,25 @@ spec:
     name: openbao-vault-cluster-store
     kind: ClusterSecretStore
   target:
-    name: grafana-cloud-loki-bao
+    name: grafana-cloud-ingest-bao
     creationPolicy: Owner
   data:
-    - secretKey: password
+    - secretKey: token
       remoteRef:
         key: secret/data/grafana-cloud
         property: ingest.token 
-    - secretKey: username 
+    - secretKey: logs.username 
       remoteRef:
         key: secret/data/grafana-cloud
-        property: logs.username 
+        property: logs.username
+    - secretKey: metrics.username
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: metrics.username
+    - secretKey: otlp.username
+      remoteRef:
+        key: secret/data/grafana-cloud
+        property: otlp.username
   
 
 
