@@ -53,20 +53,6 @@ spec:
               name: media
             - mountPath: /usr/src/paperless/consume
               name: consume
-          startupProbe:
-            httpGet:
-              path: /
-              port: http
-            failureThreshold: 30
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
       volumes:
         - name: data
           persistentVolumeClaim:
