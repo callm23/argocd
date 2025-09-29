@@ -110,12 +110,12 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-remote-cfg
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: remoteconfig.username
+              passwordKey: remoteconfig.token
         alloy-singleton:
           enabled: true
           alloy:
@@ -142,12 +142,12 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-remote-cfg
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: remoteconfig.username
+              passwordKey: remoteconfig.token
         alloy-logs:
           enabled: true
           alloy:
@@ -178,12 +178,12 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-remote-cfg
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: remoteconfig.username
+              passwordKey: remoteconfig.token
         alloy-receiver:
           enabled: true
           alloy:
@@ -227,12 +227,12 @@ spec:
             url: https://fleet-management-prod-011.grafana.net
             secret:
               create: false
-              name: grafana-cloud-remote-cfg
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: remoteconfig.username
+              passwordKey: remoteconfig.token
 
 
 
