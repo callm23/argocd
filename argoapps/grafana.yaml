@@ -26,35 +26,35 @@ spec:
             url: https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom/push
             secret:
               create: false
-              name: grafana-cloud-prom
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: metrics.username
+              passwordKey: token
           - name: grafana-cloud-logs
             type: loki
             url: https://logs-prod-012.grafana.net./loki/api/v1/push
             secret:
               create: false
-              name: grafana-cloud-loki
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: logs.username
+              passwordKey: token
           - name: gc-otlp-endpoint
             type: otlp
             url: https://otlp-gateway-prod-eu-west-2.grafana.net./otlp
             secret:
               create: false
-              name: grafana-cloud-otlp
+              name: grafana-cloud-ingest-bao
               namespace: grafana
             protocol: http
             auth:
               type: basic
-              usernameKey: username
-              passwordKey: password
+              usernameKey: otlp.username
+              passwordKey: token
             metrics:
               enabled: true
             logs:
