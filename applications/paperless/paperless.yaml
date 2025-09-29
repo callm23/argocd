@@ -45,6 +45,7 @@ spec:
                   key: PAPERLESS_SECRET_KEY
           ports:
             - containerPort: 8000
+              name: http
           volumeMounts:
             - mountPath: /usr/src/paperless/data
               name: data
