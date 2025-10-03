@@ -33,3 +33,12 @@ spec:
         resources:
           requests:
             storage: 50Gi
+  remoteWrite:
+  - url: "https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom"
+    basicAuth:
+      username:
+        name: grafana-cloud-ingest-bao
+        key: metrics.username
+      password:
+        name: grafana-cloud-ingest-bao
+        key: token
