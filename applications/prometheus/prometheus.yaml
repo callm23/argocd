@@ -34,7 +34,7 @@ spec:
           requests:
             storage: 50Gi
   remoteWrite:
-  - url: "https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom"
+  - url: "https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom/push"
     basicAuth:
       username:
         name: grafana-cloud-ingest-bao
