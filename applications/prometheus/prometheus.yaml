@@ -42,3 +42,7 @@ spec:
       password:
         name: grafana-cloud-ingest-bao
         key: token
+    writeRelabelConfigs:
+      - sourceLabels: [__name__]
+        regex: "homeassistant_sensor_moisture_percent"
+        action: keep
