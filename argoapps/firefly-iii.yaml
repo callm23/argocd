@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: firefly-iii
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/callm23/argocd.git   # dein Git Repo
+    targetRevision: main                                # Branch oder Tag
+    path: applications/firefly-iii                                 # Ordner im Repo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: firefly-iii
+  syncPolicy:
+    automated:
+      prune: true       # löscht nicht mehr vorhandene Objekte
+      selfHeal: true    # korrigiert manuelle Änderungen

@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-iii-db
+  namespace: firefly-iii
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firefly-iii-db
+  template:
+    metadata:
+      labels:
+        app: firefly-iii-db
+    spec:
+      containers:
+        - name: db
+          image: mariadb:lts
+          envFrom:
+            - secretRef:
+                name: firefly-iii-db-env
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: firefly-iii-db
