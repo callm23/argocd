@@ -78,7 +78,7 @@ metadata:
   namespace: firefly-iii
 spec:
   accessModes: ["ReadWriteOnce"]
-  volumeName: nfs-pv-firefly
+  volumeName: nfs-pv-firefly-persistence
   resources:
     requests:
       storage: 2Gi          
