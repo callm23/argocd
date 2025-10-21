@@ -54,4 +54,31 @@ spec:
   resources:
     requests:
       storage: 2Gi
-              
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-firefly
+  labels:
+    app.kubernetes.io/name: firefly
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/firefly-iii/persistence
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firefly-pvc
+  namespace: firefly-iii
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-firefly
+  resources:
+    requests:
+      storage: 2Gi          
