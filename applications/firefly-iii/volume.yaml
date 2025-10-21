@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-firefly-postgres
+  labels:
+    app.kubernetes.io/name: firefly
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/firefly-iii/postgres
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firefly-pvc-postgres
+  namespace: firefly-iii
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-firefly-postgres
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-firefly-backup
+  labels:
+    app.kubernetes.io/name: firefly
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/firefly-iii/backup
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firefly-db-backup
+  namespace: firefly-iii
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-firefly-backup
+  resources:
+    requests:
+      storage: 2Gi
+              

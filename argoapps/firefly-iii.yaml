@@ -5,14 +5,44 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/callm23/argocd.git   # dein Git Repo
-    targetRevision: main                                # Branch oder Tag
-    path: applications/firefly-iii                                 # Ordner im Repo
   destination:
     server: https://kubernetes.default.svc
     namespace: firefly-iii
   syncPolicy:
     automated:
-      prune: true       # löscht nicht mehr vorhandene Objekte
-      selfHeal: true    # korrigiert manuelle Änderungen
+      prune: true 
+      selfHeal: true
+  source:
+    repoURL: https://firefly-iii.github.io/kubernetes/
+    chart: firefly-iii-stack
+    targetRevision: 0.9.0       # specific chart version
+    helm:
+      releaseName: firefly-iii
+      values: |
+        firefly-db:
+          storage:
+            accessModes: ["ReadWriteOnce"]
+            size: 2Gi
+          image:
+            tag: 10-alpine
+          backup:
+            pvc: 
+              existingClaim: firefly-db-backup
+          configs:
+            existingSecret: firefly-iii-secret
+            DBNAME: firefly
+
+        firefly-iii:
+          image:
+            tag: latest
+          config:
+            existingSecret: firefly-iii-secret
+            TRUSTED_PROXIES: "**"
+          persistence:
+            enabled: true
+            storageClass: synology-nfs
+            size: 1Gi
+            existingClaim: firefly-pvc
+
+        ingress:
+          enabled: false
