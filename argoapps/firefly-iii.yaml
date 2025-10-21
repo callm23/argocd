@@ -25,11 +25,13 @@ spec:
             size: 2Gi
           image:
             tag: 10-alpine
+          storage: 
+            existingClaim: firefly-pvc-postgres 
           backup:
             pvc: 
               existingClaim: firefly-db-backup
           configs:
-            existingSecret: firefly-iii-secret
+            existingSecret: firefly-iii-secret 
             DBNAME: firefly
 
         firefly-iii:
