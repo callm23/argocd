@@ -58,7 +58,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-firefly
+  name: nfs-pv-firefly-persistence
   labels:
     app.kubernetes.io/name: firefly
 spec:
