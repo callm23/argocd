@@ -30,7 +30,7 @@ spec:
             pvc: 
               existingClaim: firefly-db-backup
           configs:
-            existingSecret: firefly-iii-secret 
+            existingSecret: firefly-iii-secret-db
             DBNAME: firefly
 
         firefly-iii:
