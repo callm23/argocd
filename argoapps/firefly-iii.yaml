@@ -53,17 +53,15 @@ spec:
           # -- Set to false to not deploy the importer
           enabled: true
 
+          image:
+            tag: "version-1.9.0"
+
           service:
             type: NodePort
-
-          config:
-              env:
-                FIREFLY_III_URL: "http://192.168.1.241:31148"
 
           fireflyiii:
           # -- The URL at which Firefly III is available. If you change this value, click the "Reauthenticate" button on the importer after opening it!
             url: "http://192.168.1.241:31148"
-            vanityUrl: "http://192.168.1.241:31148"
             
 
         
