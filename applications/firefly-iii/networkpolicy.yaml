@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-firefly-iii
+  namespace: firefly-iii
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: firefly-iii
+  policyTypes:
+  - Egress
+  - Ingress
+  # Allow all ingress
+  ingress:
+  - {}
+  # Block all egress
+  egress: []
