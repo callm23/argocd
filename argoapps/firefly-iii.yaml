@@ -32,6 +32,7 @@ spec:
           configs:
             existingSecret: firefly-iii-secret-db
             DBNAME: firefly
+            DBHOST: "firefly-iii-firefly-db"
 
         firefly-iii:
           image:
