@@ -36,6 +36,8 @@ spec:
         firefly-iii:
           image:
             tag: latest
+          service:
+            type: NodePort
           config:
             existingSecret: firefly-iii-secret
             TRUSTED_PROXIES: "**"
