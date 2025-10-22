@@ -35,7 +35,7 @@ spec:
 
         firefly-iii:
           image:
-            tag: latest
+            tag: v6.4.2
           service:
             type: NodePort
           config:
