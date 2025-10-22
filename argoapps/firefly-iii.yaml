@@ -39,6 +39,8 @@ spec:
           config:
             existingSecret: firefly-iii-secret
             TRUSTED_PROXIES: "**"
+          env:
+            DB_CONNECTION: pgsql
           persistence:
             enabled: true
             storageClass: synology-nfs
