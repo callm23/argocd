@@ -49,11 +49,15 @@ spec:
             size: 1Gi
             existingClaim: firefly-pvc
 
-        ingress:
-          enabled: false
+        importer:
+          # -- Set to false to not deploy the importer
+          enabled: true
 
-        service:
-          type: NodePort
+          fireflyiii:
+          # -- The URL at which Firefly III is available. If you change this value, click the "Reauthenticate" button on the importer after opening it!
+          url: "http://192.168.1.241:31148"
+
+        
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
