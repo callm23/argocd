@@ -49,6 +49,9 @@ spec:
 
         ingress:
           enabled: false
+
+        service:
+          type: NodePort
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -68,4 +71,3 @@ spec:
     automated:
       prune: true       # löscht nicht mehr vorhandene Objekte
       selfHeal: true    # korrigiert manuelle Änderungen
-
