@@ -70,7 +70,8 @@ spec:
               enabled: true
               size: 1Gi
               # Optional: Set this to persistentVolumeClaim to keep job queues persistent
-              type: emptyDir
+              type: persistentVolumeClaim
+              existingClaim: immich-valkey
               accessMode: ReadWriteOnce
               # storageClass: your-class
 
@@ -117,6 +118,7 @@ spec:
               enabled: true
               size: 10Gi
               # Optional: Set this to persistentVolumeClaim to avoid downloading the ML models every start.
-              type: emptyDir
+              type: persistentVolumeClaim
+              existingClaim: immich-ml
               accessMode: ReadWriteMany
               # storageClass: your-class

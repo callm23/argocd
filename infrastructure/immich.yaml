@@ -30,3 +30,59 @@ spec:
   resources:
     requests:
       storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-immich-valkey
+  labels:
+    app.kubernetes.io/name: immich
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/immich/valkey
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-valkey
+  namespace: immich
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-immich-valkey
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-immich-ml
+  labels:
+    app.kubernetes.io/name: immich
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/immich/ml
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-ml
+  namespace: immich
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-immich-ml
+  resources:
+    requests:
+      storage: 10Gi
