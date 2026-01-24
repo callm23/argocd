@@ -87,3 +87,30 @@ spec:
     requests:
       storage: 10Gi
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-immich-postgres
+  labels:
+    app.kubernetes.io/name: immich
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/immich/postgres
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data-immich
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  volumeName: nfs-pv-immich-postgres
