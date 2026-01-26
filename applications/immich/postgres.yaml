@@ -38,3 +38,16 @@ spec:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-data-immich
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-svc
+  namespace: immich
+spec:
+  type: ClusterIP
+  selector:
+    app: redis
+  ports:
+    - port: 5432
+      targetPort: 5432
