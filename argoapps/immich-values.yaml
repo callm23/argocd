@@ -78,6 +78,9 @@ server:
               service:
                 identifier: main
       tls: []
+  envFrom:
+      - secretRef:
+          name: postgres-secret
 
 machine-learning:
   enabled: true
