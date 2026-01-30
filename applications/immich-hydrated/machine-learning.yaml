@@ -13,7 +13,7 @@ metadata:
     helm.sh/chart: immich-0.10.3
   namespace: immich
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 3003
       targetPort: http
