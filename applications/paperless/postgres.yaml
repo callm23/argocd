@@ -101,6 +101,18 @@ spec:
       storage: 1Gi
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: paperless-import
+  namespace: paperless
+spec:
+  accessModes: ["ReadWriteOnce"]
+  volumeName: nfs-pv-synology-paperless-import
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nfs-pv-synology-paperless-postgres
