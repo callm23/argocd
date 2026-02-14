@@ -54,7 +54,7 @@ spec:
             - mountPath: /usr/src/paperless/consume
               name: consume
             - mountPath: /usr/src/paperless/import
-              name: consume
+              name: import
       volumes:
         - name: data
           persistentVolumeClaim:
