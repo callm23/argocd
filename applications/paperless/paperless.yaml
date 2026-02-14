@@ -53,6 +53,8 @@ spec:
               name: media
             - mountPath: /usr/src/paperless/consume
               name: consume
+            - mountPath: /usr/src/paperless/import
+              name: consume
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -63,6 +65,9 @@ spec:
         - name: consume
           persistentVolumeClaim:
             claimName: paperless-consume
+        - name: import
+          persistentVolumeClaim:
+            claimName: paperless-import
 ---
 # Service für Paperless
 apiVersion: v1

@@ -163,3 +163,19 @@ spec:
     server: 192.168.1.100
     path: /volume2/proxmox/kubernetes/nfs/paperless/consume
   persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-synology-paperless-consume
+  labels:
+    app.kubernetes.io/name: my-paperless
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100
+    path: /volume2/proxmox/kubernetes/nfs/paperless/import
+  persistentVolumeReclaimPolicy: Retain
