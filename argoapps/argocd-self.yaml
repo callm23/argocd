@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/callm23/argocd.git
     targetRevision: main
-    path: argocd
+    path: applications/argocd
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
