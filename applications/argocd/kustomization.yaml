@@ -6,4 +6,13 @@ resources:
 
 patches:
   - path: patches/argocd-cm.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-cm
+      namespace: argocd
+
   - path: patches/argocd-rbac.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-rbac-cm
+      namespace: argocd
