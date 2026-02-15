@@ -1,0 +1,88 @@
+immich:
+  server:
+    enabled: true
+    replicaCount: 1
+
+    image:
+      repository: ghcr.io/immich-app/immich-server
+      tag: v2.5.2
+      pullPolicy: IfNotPresent
+
+    service:
+      type: NodePort
+      ports:
+        http:
+          port: 2283
+        metricsApi:
+          port: 8081
+        metricsMs:
+          port: 8082
+
+    env:
+      IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning:3003
+      IMMICH_TELEMETRY_INCLUDE: all
+      REDIS_HOSTNAME: redis-svc
+      DB_HOSTNAME: postgres-svc
+
+    envFrom:
+      - secretRef:
+          name: immich-server-secrets
+
+    persistence:
+      library:
+        enabled: true
+        existingClaim: immich-library  # Your NFS PVC
+        mountPath: /data
+
+      valkey:
+        enabled: true
+        existingClaim: immich-valkey
+        mountPath: /valkey
+
+    probes:
+      liveness:
+        path: /api/server/ping
+        port: http
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 3
+      readiness:
+        path: /api/server/ping
+        port: http
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 3
+      startup:
+        path: /api/server/ping
+        port: http
+        periodSeconds: 10
+        timeoutSeconds: 1
+        failureThreshold: 30
+
+    pod:
+      serviceAccountName: default
+      automountServiceAccountToken: true
+      enableServiceLinks: false
+      dnsPolicy: ClusterFirst
+
+  machineLearning:
+    enabled: true
+    persistence:
+      enabled: true
+      existingClaim: immich-ml
+      mountPath: /data
+
+  database:
+    enabled: true
+    persistence:
+      enabled: true
+      existingClaim: postgres-data-immich
+      mountPath: /var/lib/postgresql/data
+
+metrics:
+  serviceMonitor:
+    enabled: true
+    namespace: immich
+    endpoints:
+      - port: metrics-api
+      - port: metrics-ms
