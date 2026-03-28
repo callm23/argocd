@@ -22,8 +22,8 @@ spec:
         - name: paperless
           image: paperlessngx/paperless-ngx:2.20.6
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 1035
+            runAsGroup: 100
           env:
             - name: PAPERLESS_REDIS
               value: redis://redis-svc:6379
