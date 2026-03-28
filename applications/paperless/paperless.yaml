@@ -43,6 +43,10 @@ spec:
                 secretKeyRef:
                   name: paperless-db-secret
                   key: PAPERLESS_SECRET_KEY
+            - name: PUID
+              value: 1035
+            - name: PGID
+              value: 100
           ports:
             - containerPort: 8000
               name: http
